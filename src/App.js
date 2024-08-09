@@ -9,6 +9,14 @@ function App() {
     email: '',
     profile_picture: '',
   });
+
+  const [errors, setErrors] = useState({
+    first_name: '',
+    last_name: '',
+    enrollee_id: '',
+    email: '',
+    profile_picture: '',
+  });
   const [enrolleRecord, setEnrolleRecord] = useState([]);
 
   const handleChange = (e) => {
@@ -68,18 +76,11 @@ function App() {
     }
   };
   return (
-    <div className="min-h-screen bg-gradient-to-r from-blue-100 to-purple-100 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
+    <div className="min-h-screen  from-blue-100 to-purple-100 py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center">
       <div className="max-w-4xl w-full space-y-8">
-        <div className="text-center">
-          <h2 className="mt-6 text-3xl font-extrabold text-gray-900">
-            Enrollee Management System
-          </h2>
-          <p className="mt-2 text-sm text-gray-600">
-            Add, view, and manage enrollee records
-          </p>
-        </div>
         
-        <div className="bg-white shadow-2xl rounded-lg overflow-hidden">
+
+        <div className=" rounded-lg overflow-hidden">
           <div className="px-8 py-6">
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
@@ -156,7 +157,7 @@ function App() {
               </div>
               <div>
                 <button
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="w-[100px] flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   type="submit"
                 >
                   Submit
@@ -166,26 +167,26 @@ function App() {
           </div>
         </div>
 
-        <div className="bg-white shadow-2xl rounded-lg overflow-hidden">
+        <div className=" rounded-lg overflow-hidden">
           <div className="px-8 py-6">
             <h2 className="text-2xl font-bold mb-4 text-gray-800">Enrollee Records</h2>
             <div className="overflow-x-auto">
-              <table className="min-w-full divide-y divide-gray-200">
+              <table className="min-w-full divide-y divide-gray-200 border border-gray-300">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-300">
                       First Name
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-300">
                       Last Name
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-300">
                       Enrollee ID
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-300">
                       Email
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-300">
                       Action
                     </th>
                   </tr>
@@ -193,11 +194,11 @@ function App() {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {enrolleRecord.map((data, index) => (
                     <tr key={index}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{data?.first_name}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{data?.last_name}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{data?.enrollee_id}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{data?.email}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-300">{data?.first_name}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-300">{data?.last_name}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-300">{data?.enrollee_id}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 border-b border-gray-300">{data?.email}</td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium border-b border-gray-300">
                         <button
                           onClick={() => handleDelete(data?._id)}
                           className="text-red-600 hover:text-red-900 focus:outline-none focus:underline"
