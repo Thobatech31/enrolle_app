@@ -34,9 +34,6 @@ function App() {
   }
 
 
-  const EnrolleRecord = JSON.parse(localStorage?.getItem("formData"))
-
-
 
   const getEnrolleRecord = async () => {
     const res = await fetch("https://auto-mart-apis-nodejs-mongodb.onrender.com/api/v1/enrollee/all", {
