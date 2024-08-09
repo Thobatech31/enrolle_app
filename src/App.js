@@ -28,8 +28,14 @@ function App() {
       },
       body: JSON.stringify(formData)
     })
-
-    setEnrolleRecord(res?.data)
+    setFormData({
+      first_name: '',
+      last_name: '',
+      enrollee_id: '',
+      email: '',
+      profile_picture: '',
+    })
+    getEnrolleRecord()
 
   }
 
@@ -37,20 +43,38 @@ function App() {
 
   const getEnrolleRecord = async () => {
     const res = await fetch("https://auto-mart-apis-nodejs-mongodb.onrender.com/api/v1/enrollee/all", {
-      method: "GET",
+      method: 'GET', 
       headers: {
-        "Content-Type": "application/json"
+        'Content-Type': 'application/json'
       },
     })
-    console.log("res", res)
-    setEnrolleRecord(res?.data)
+    const data = await res?.json()
+
+    setEnrolleRecord(data?.data)
   }
+
+
   useEffect(() => {
     getEnrolleRecord()
   }, [])
-  console.log("enrolleRecord", enrolleRecord)
+
+  const handleDelete = async (id) => {
+    const res = await fetch(`https://auto-mart-apis-nodejs-mongodb.onrender.com/api/v1/enrollee/delete/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await res?.json()
+    console.log("data", data)
+    if (data?.status === "200") {
+      alert("Enrolle Record Deleted Successfully")
+    }
+    getEnrolleRecord()
+
+  }
   return (
-    <div className="App">
+    <div className="App" style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "20px" }}>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Enter your name</label><br />
@@ -72,12 +96,12 @@ function App() {
           <label>Profile Picture</label><br />
           <input type="text" onChange={handleChange} name="profile_picture" id='profile_picture' />
         </div>
-        <button type="submit">Submit</button>
+        <button style={{ marginTop: "20px", padding: "10px 20px", borderRadius: "10px", backgroundColor: "blue", color: "white" }} type="submit">Submit</button>
       </form>
 
 
-      <div>
-        <input type="text" placeholder='filter by name' name="search" id="search" />
+      <div style={{ marginTop: "70px",  }}>
+        {/* <input type="text" placeholder='filter by name' name="search" id="search" /> */}
         <table border="1">
           <tr>
             <th>First Name</th>
@@ -90,18 +114,12 @@ function App() {
             {enrolleRecord?.map((data, index) => {
               return (
                 <tr key={index}>
-
                   <td>{data?.first_name}</td>
                   <td>{data?.last_name}</td>
-                  <td>{data?.email}</td>
                   <td>{data?.enrollee_id}</td>
-                  <td><button style={{ backgroundColor: "red", color: "white", padding: "4px 20px" }}>Delete</button></td>
+                  <td>{data?.email}</td>
+                  <td><button onClick={() => handleDelete(data?._id)} style={{ backgroundColor: "red", color: "white", padding: "4px 20px" }}>Delete</button></td>
                 </tr>
-
-
-
-
-
               )
             })}
 
