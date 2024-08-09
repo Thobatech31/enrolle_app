@@ -77,24 +77,24 @@ function App() {
     <div className="App" style={{ marginTop: "70px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
       <form className='flex' onSubmit={handleSubmit}>
         <div>
-          <label className='text-black align-left'>First Name</label><br />
-          <input className='border-2 border-black' placeholder='Enter your first name' type="text" onChange={handleChange} name="first_name" id='first_name' />
+          <label className='text-black align-left' style={{textAlign:"left"}}>First Name</label><br />
+          <input className='border-2' placeholder='Enter your irst name' type="text" onChange={handleChange} name="first_name" id='first_name' />
         </div>
         <div>
           <label>Last Name</label><br />
-          <input className='border-2 border-black' placeholder='Enter your last name' type="text" onChange={handleChange} name="last_name" id='last_name' />
+          <input className='border-2' placeholder='Enter your last name' type="text" onChange={handleChange} name="last_name" id='last_name' />
         </div>
         <div>
           <label>Enrollee ID</label><br />
-          <input className='border-2 border-black' placeholder='Enter your enrolle id' type="text" onChange={handleChange} name="enrollee_id" id='enrollee_id' />
+          <input className='border-2 ' placeholder='Enter your enrolle id' type="text" onChange={handleChange} name="enrollee_id" id='enrollee_id' />
         </div>
         <div>
           <label>Email</label><br />
-          <input className='border-2 border-black' placeholder='Enter your email' type="text" onChange={handleChange} name="email" id='email' />
+          <input className='border-2' placeholder='Enter your email' type="text" onChange={handleChange} name="email" id='email' />
         </div>
         <div>
           <label>Profile Picture</label><br />
-          <input className='border-2 border-black' placeholder='Enter your profile picture' type="text" onChange={handleChange} name="profile_picture" id='profile_picture' />
+          <input className='border-2' placeholder='post image url' type="text" onChange={handleChange} name="profile_picture" id='profile_picture' />
         </div>
         <button style={{ marginTop: "20px", padding: "10px 20px", borderRadius: "10px", backgroundColor: "blue", color: "white" }} type="submit">Submit</button>
       </form>
