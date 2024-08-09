@@ -65,12 +65,14 @@ function App() {
       const res = await fetch(`https://auto-mart-apis-nodejs-mongodb.onrender.com/api/v1/enrollee/delete/${id}`, {
         method: 'DELETE',
       });
+      getEnrolleRecord();
+
       if (!res.ok) throw new Error('Failed to delete');
       const data = await res.json();
+
       if (data?.status === "200") {
         alert("Enrollee Record Deleted Successfully");
       }
-      getEnrolleRecord();
     } catch (error) {
       console.error("Error deleting record:", error);
     }
